@@ -41,8 +41,8 @@ void displayMole() {
 
 
 void whackMole() {
-  int current ;
-
+  unsigned long current;
+  unsigned long end;
   current = millis();
   end = millis() + 500;
   while (millis() < end) {
@@ -83,7 +83,7 @@ void whackMole() {
             }  
       }    
   } 
-  }
+ 
 }
 
 void pause() {

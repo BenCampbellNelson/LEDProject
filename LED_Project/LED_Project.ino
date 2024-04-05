@@ -58,6 +58,31 @@ void whackMole() {
             delay(300);
             }  
       }
+    green = digitalRead(greenIn);  // read input value
+      if (green == HIGH) {         // check if the input is pressed
+           if (mole==2) {
+            // High pitch tone +++
+            tone(buzzer, 1000, 10); //Pin,Frequency,Duration
+            delay(10);
+        } else {
+            // Low pitch tone ---
+            tone(buzzer, 100, 300); //Pin,Frequency,Duration
+            delay(300);
+            }  
+      }
+    blue = digitalRead(blueIn);  // read input value
+      if (blue == HIGH) {         // check if the input is pressed
+           if (mole==3) {
+            // High pitch tone +++
+            tone(buzzer, 1000, 10); //Pin,Frequency,Duration
+            delay(10);
+        } else {
+            // Low pitch tone ---
+            tone(buzzer, 100, 300); //Pin,Frequency,Duration
+            delay(300);
+            }  
+      }    
+  } 
   }
 }
 

@@ -48,7 +48,7 @@ void whackMole() {
   while (millis() < end) {
     red = digitalRead(redIn);
     if (red == HIGH) {         // check if the input is pressed
-           if (mole==1) {
+           if (mole == 1) {
             // High pitch tone +++
             tone(buzzer, 1000, 10); //Buzzer,Frequency,Duration
             delay(10);
@@ -60,7 +60,7 @@ void whackMole() {
       }
     green = digitalRead(greenIn);  // read input value
       if (green == HIGH) {         // check if the input is pressed
-           if (mole==2) {
+           if (mole == 2) {
             // High pitch tone +++
             tone(buzzer, 1000, 10); //Pin,Frequency,Duration
             delay(10);
@@ -72,7 +72,7 @@ void whackMole() {
       }
     blue = digitalRead(blueIn);  // read input value
       if (blue == HIGH) {         // check if the input is pressed
-           if (mole==3) {
+           if (mole == 3) {
             // High pitch tone +++
             tone(buzzer, 1000, 10); //Pin,Frequency,Duration
             delay(10);
@@ -87,6 +87,13 @@ void whackMole() {
 }
 
 void pause() {
+  unsigned long current;
+  unsigned long end;
+  
+  mole = -1;
+  digitalWrite(redOut, LOW);
+  digitalWrite(greenOut, LOW);
+  digitalWrite(blueOut, LOW);
   
 }
 

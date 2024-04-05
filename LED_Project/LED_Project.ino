@@ -7,9 +7,17 @@ int greenIn = 6;
 int greenOut = 12;
 int blueIn = 7;
 int blueOut = 13;
+
+
+
 void setup() {
   // put your setup code here, to run once:
-
+  pinMode(redOut, OUTPUT); 
+  pinMode(greenOut, OUTPUT); 
+  pinMode(blueOut, OUTPUT); 
+  pinMode(redIn, INPUT); 
+  pinMode(greenIn, INPUT); 
+  pinMode(blueIn, INPUT); 
 }
 
 void loop() {

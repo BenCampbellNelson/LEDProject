@@ -94,7 +94,20 @@ void pause() {
   digitalWrite(redOut, LOW);
   digitalWrite(greenOut, LOW);
   digitalWrite(blueOut, LOW);
-  
+
+  int pauseDuration = rand() % 500 + 100;
+  current = millis();
+  end = millis() + pauseDuration;
+  while (millis() < end) {
+    red = digitalRead(redIn);
+    green = digitalRead(greenIn);
+    blue = digitalRead(blueIn);
+    delay(10); //a small delay to reduce rapid button reading
+    if (red == HIGH || green == HIGH || blue == HIGH) {
+      tone(buzzer, 100, 300); //Pin,Frequency,Duration
+      delay(300);
+    }
+  }
 }
 
 void loop() {

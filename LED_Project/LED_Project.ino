@@ -41,7 +41,24 @@ void displayMole() {
 
 
 void whackMole() {
-  
+  int current ;
+
+  current = millis();
+  end = millis() + 500;
+  while (millis() < end) {
+    red = digitalRead(redIn);
+    if (red == HIGH) {         // check if the input is pressed
+           if (mole==1) {
+            // High pitch tone +++
+            tone(buzzer, 1000, 10); //Buzzer,Frequency,Duration
+            delay(10);
+        } else {
+            // Low pitch tone ---
+            tone(buzzer, 100, 300); //Buzzer,Frequency,Duration
+            delay(300);
+            }  
+      }
+  }
 }
 
 void pause() {

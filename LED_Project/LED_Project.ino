@@ -7,6 +7,8 @@ int greenIn = 6;
 int greenOut = 12;
 int blueIn = 7;
 int blueOut = 13;
+int buzzer = 10;
+int incorrect = 10;
 
 
 

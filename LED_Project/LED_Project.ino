@@ -23,8 +23,22 @@ void setup() {
 }
 
 void displayMole() {
-  mole 
+  mole = rand() % 3;
+  switch (mole) {
+    case 0:
+      digitalWrite(redOut, HIGH);
+      break;
+    case 1:
+      digitalWrite(greenOut, HIGH);
+      break;
+    case 2:
+      digitalWrite(blueOut, HIGH);
+      break;
+    default:
+      break;
+  }
 }
+
 
 void whackMole() {
   

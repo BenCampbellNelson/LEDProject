@@ -9,7 +9,7 @@ int blueIn = 7;
 int blueOut = 13;
 int buzzer = 10;
 int incorrect = 10;
-
+int mole = -1;
 
 
 void setup() {
@@ -23,7 +23,7 @@ void setup() {
 }
 
 void displayMole() {
-  
+  mole 
 }
 
 void whackMole() {

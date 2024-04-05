@@ -22,6 +22,18 @@ void setup() {
   pinMode(blueIn, INPUT); 
 }
 
+void displayMole() {
+  
+}
+
+void whackMole() {
+  
+}
+
+void pause() {
+  
+}
+
 void loop() {
   // put your main code here, to run repeatedly:
 

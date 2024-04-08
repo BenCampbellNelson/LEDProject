@@ -20,6 +20,9 @@ void setup() {
   pinMode(redIn, INPUT); 
   pinMode(greenIn, INPUT); 
   pinMode(blueIn, INPUT); 
+
+
+  randomSeed(analogRead(0));
 }
 
 void displayMole() {

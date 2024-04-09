@@ -14,12 +14,12 @@ int mole = -1;
 
 void setup() {
   // Set pin modes for inputs and outputs
+  pinMode(redIn, INPUT); 
+  pinMode(greenIn, INPUT); 
+  pinMode(blueIn, INPUT);
   pinMode(redOut, OUTPUT); 
   pinMode(greenOut, OUTPUT); 
   pinMode(blueOut, OUTPUT); 
-  pinMode(redIn, INPUT); 
-  pinMode(greenIn, INPUT); 
-  pinMode(blueIn, INPUT); 
 
   // Seed the random number generator
   randomSeed(analogRead(0));
@@ -45,50 +45,23 @@ void displayMole() {
 
 
 void whackMole() {
-  unsigned long current;
-  unsigned long end;
-  current = millis();
-  end = millis() + 500;
+  const int inputPins[3] = {redIn, greenIn, blueIn};
+  unsigned long end = millis() + 500;
   while (millis() < end) {
-    red = digitalRead(redIn);
-    if (red == HIGH) {         // check if the input is pressed
-           if (mole == 0) {
-            // High pitch tone +++
-            tone(buzzer, 1000, 10); //Buzzer,Frequency,Duration
-            delay(10);
-        } else {
-            // Low pitch tone ---
-            tone(buzzer, 100, 300); //Buzzer,Frequency,Duration
-            delay(300);
-            }  
+    for (int i = 0; i < 3; i++) {
+      int inputPin = inputPins[i];
+      int toneFrequency = (mole == i) ? 1000 : 100; // High or low pitch tone
+      int toneDuration = (mole == i) ? 10 : 300;    // Duration of the tone
+      
+      if (digitalRead(inputPin) == HIGH) {
+        tone(buzzer, toneFrequency, toneDuration);
+        delay(toneDuration);
       }
-    green = digitalRead(greenIn);  // read input value
-      if (green == HIGH) {         // check if the input is pressed
-           if (mole == 1) {
-            // High pitch tone +++
-            tone(buzzer, 1000, 10); //Pin,Frequency,Duration
-            delay(10);
-        } else {
-            // Low pitch tone ---
-            tone(buzzer, 100, 300); //Pin,Frequency,Duration
-            delay(300);
-            }  
-      }
-    blue = digitalRead(blueIn);  // read input value
-      if (blue == HIGH) {         // check if the input is pressed
-           if (mole == 2) {
-            // High pitch tone +++
-            tone(buzzer, 1000, 10); //Pin,Frequency,Duration
-            delay(10);
-        } else {
-            // Low pitch tone ---
-            tone(buzzer, 100, 300); //Pin,Frequency,Duration
-            delay(300);
-            }  
-      }    
-  } 
- 
+    }
+  }
 }
+
+
 
 void pause() {
   unsigned long current;

@@ -13,7 +13,7 @@ int mole = -1;
 
 
 void setup() {
-  // put your setup code here, to run once:
+  // Set pin modes for inputs and outputs
   pinMode(redOut, OUTPUT); 
   pinMode(greenOut, OUTPUT); 
   pinMode(blueOut, OUTPUT); 
@@ -21,21 +21,22 @@ void setup() {
   pinMode(greenIn, INPUT); 
   pinMode(blueIn, INPUT); 
 
-
+  // Seed the random number generator
   randomSeed(analogRead(0));
 }
 
+// Function to display the mole on a random LED
 void displayMole() {
-  mole = rand() % 3;
+  mole = rand() % 3;  // Randomly select a mole position
   switch (mole) {
     case 0:
-      digitalWrite(redOut, HIGH);
+      digitalWrite(redOut, HIGH);   // Turn on the red LED
       break;
     case 1:
-      digitalWrite(greenOut, HIGH);
+      digitalWrite(greenOut, HIGH); // Turn on the green LED
       break;
     case 2:
-      digitalWrite(blueOut, HIGH);
+      digitalWrite(blueOut, HIGH);  // Turn on the blue LED
       break;
     default:
       break;
@@ -114,8 +115,8 @@ void pause() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  pause();
-  displayMole();
-  whackMole();
+  // Main game loop
+  pause();        // Pause before displaying the next mole
+  displayMole();  // Display the mole on a random LED
+  whackMole();    // Handle player input to hit the mole
 }

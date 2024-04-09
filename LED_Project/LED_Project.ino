@@ -1,12 +1,12 @@
 int red = 0;
 int green = 0;
 int blue = 0;
-int redIn = 5;
-int redOut = 11;
-int greenIn = 6;
-int greenOut = 12;
-int blueIn = 7;
-int blueOut = 13;
+int redButtonPin = 5;
+int redOutputPin = 11;
+int greenButtonPin = 6;
+int greenOutputPin = 12;
+int blueButtonPin = 7;
+int blueOutputPin = 13;
 int buzzer = 10;
 int incorrectOut = 10;
 int mole = -1;
@@ -14,12 +14,12 @@ int mole = -1;
 
 void setup() {
   // Set pin modes for inputs and outputs
-  pinMode(redIn, INPUT); 
-  pinMode(greenIn, INPUT); 
-  pinMode(blueIn, INPUT);
-  pinMode(redOut, OUTPUT); 
-  pinMode(greenOut, OUTPUT); 
-  pinMode(blueOut, OUTPUT); 
+  pinMode(redButtonPin, INPUT); 
+  pinMode(greenButtonPin, INPUT); 
+  pinMode(blueButtonPin, INPUT);
+  pinMode(redOutputPin, OUTPUT); 
+  pinMode(greenOutputPin, OUTPUT); 
+  pinMode(blueOutputPin, OUTPUT); 
 
   // Seed the random number generator
   randomSeed(analogRead(0));
@@ -30,13 +30,13 @@ void displayMole() {
   mole = rand() % 3;  // Randomly select a mole position
   switch (mole) {
     case 0:
-      digitalWrite(redOut, HIGH);   // Turn on the red LED
+      digitalWrite(redOutputPin, HIGH);   // Turn on the red LED
       break;
     case 1:
-      digitalWrite(greenOut, HIGH); // Turn on the green LED
+      digitalWrite(greenOutputPin, HIGH); // Turn on the green LED
       break;
     case 2:
-      digitalWrite(blueOut, HIGH);  // Turn on the blue LED
+      digitalWrite(blueOutputPin, HIGH);  // Turn on the blue LED
       break;
     default:
       break;
@@ -45,7 +45,7 @@ void displayMole() {
 
 
 void whackMole() {
-  const int inputPins[3] = {redIn, greenIn, blueIn};
+  const int inputPins[3] = {redButtonPin, greenButtonPin, blueButtonPin};
   unsigned long end = millis() + 500;
   while (millis() < end) {
     for (int i = 0; i < 3; i++) {
@@ -63,29 +63,28 @@ void whackMole() {
 
 
 
-void pause() {
-  unsigned long current;
-  unsigned long end;
-  
-  mole = -1;
-  digitalWrite(redOut, LOW);
-  digitalWrite(greenOut, LOW);
-  digitalWrite(blueOut, LOW);
 
-  int pauseDuration = rand() % 500 + 100;
-  current = millis();
-  end = millis() + pauseDuration;
-  while (millis() < end) {
-    red = digitalRead(redIn);
-    green = digitalRead(greenIn);
-    blue = digitalRead(blueIn);
-    delay(10); //a small delay to reduce rapid button reading
-    if (red == HIGH || green == HIGH || blue == HIGH) {
-      tone(buzzer, 100, 300); //Pin,Frequency,Duration
-      delay(300);
+void pause() {
+  mole = -1;  // Reset mole position
+  digitalWrite(redOutputPin, LOW);   // Turn off red LED
+  digitalWrite(greenOutputPin, LOW); // Turn off green LED
+  digitalWrite(blueOutputPin, LOW);  // Turn off blue LED
+
+  // Generate a random pause duration between 100 and 599 milliseconds
+  int pauseDuration = random(2000) + 100; //Keep 100 so there is a minimum pause length
+  
+  // Wait for the pause duration to elapse
+  unsigned long pauseStartTime = millis();
+  while (millis() - pauseStartTime < pauseDuration) {
+    // Check for button press during the pause
+    if (digitalRead(redButtonPin) == HIGH || digitalRead(greenButtonPin) == HIGH || digitalRead(blueButtonPin) == HIGH) {
+      tone(buzzer, 100, 300); // Play tone for button press
+      delay(300);             // Wait for tone to finish
     }
+    delay(10); // Small delay to reduce rapid button reading
   }
 }
+
 
 void loop() {
   // Main game loop

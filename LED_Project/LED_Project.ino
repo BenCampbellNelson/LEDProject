@@ -1,3 +1,4 @@
+//Declare variables to hold values for the LED pins, buzzer and buttons
 int red = 0;
 int green = 0;
 int blue = 0;
@@ -11,6 +12,7 @@ int buzzer = 10;
 int incorrectOut = 10;
 int mole = -1;
 
+//Declare variables for 
 int RGBred = 2;
 int RGBgreen = 3;
 int RGBblue = 4;
@@ -23,7 +25,10 @@ void setup() {
   pinMode(blueButtonPin, INPUT);
   pinMode(redOutputPin, OUTPUT); 
   pinMode(greenOutputPin, OUTPUT); 
-  pinMode(blueOutputPin, OUTPUT); 
+  pinMode(blueOutputPin, OUTPUT);
+  pinMode(RGBred, OUTPUT);
+  pinMode(RGBgreen, OUTPUT);
+  pinMode(RGBblue, OUTPUT); 
 
   // Seed the random number generator
   randomSeed(analogRead(0));

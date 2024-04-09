@@ -92,7 +92,7 @@ void pause() {
   digitalWrite(blueOutputPin, LOW);  // Turn off blue LED
 
   // Generate a random pause duration between 100 and 599 milliseconds
-  int pauseDuration = random(2000) + 100; //Keep 100 so there is a minimum pause length
+  int pauseDuration = random(500) + 100; //Keep 100 so there is a minimum pause length
   
   // Wait for the pause duration to elapse
   unsigned long pauseStartTime = millis();

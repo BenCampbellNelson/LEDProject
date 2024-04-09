@@ -11,6 +11,10 @@ int buzzer = 10;
 int incorrectOut = 10;
 int mole = -1;
 
+int RGBred = 2;
+int RGBgreen = 3;
+int RGBblue = 4;
+
 
 void setup() {
   // Set pin modes for inputs and outputs
@@ -54,12 +58,24 @@ void whackMole() {
       int toneDuration = (mole == i) ? 10 : 300;    // Duration of the tone
       
       if (digitalRead(inputPin) == HIGH) {
+        if (mole == i) {
+          // Correct hit
+          digitalWrite(RGBgreen, HIGH); // Turn on green on correct hit
+          delay(500); 
+          digitalWrite(RGBgreen, LOW);  
+        } else {
+          // Incorrect hit
+          digitalWrite(RGBred, HIGH);   // Turn on red on incorrect hit
+          delay(500); 
+          digitalWrite(RGBred, LOW);    
+        }
         tone(buzzer, toneFrequency, toneDuration);
         delay(toneDuration);
       }
     }
   }
 }
+
 
 
 

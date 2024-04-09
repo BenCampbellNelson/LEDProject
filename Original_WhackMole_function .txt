@@ -1,0 +1,16 @@
+void whackMole() {
+  const int inputPins[3] = {redButtonPin, greenButtonPin, blueButtonPin};
+  unsigned long end = millis() + 500;
+  while (millis() < end) {
+    for (int i = 0; i < 3; i++) {
+      int inputPin = inputPins[i];
+      int toneFrequency = (mole == i) ? 1000 : 100; // High or low pitch tone
+      int toneDuration = (mole == i) ? 10 : 300;    // Duration of the tone
+      
+      if (digitalRead(inputPin) == HIGH) {
+        tone(buzzer, toneFrequency, toneDuration);
+        delay(toneDuration);
+      }
+    }
+  }
+}
